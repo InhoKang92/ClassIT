@@ -1,3 +1,6 @@
+![메인페이지](https://github.com/user-attachments/assets/164ab0a4-d958-4e66-9858-85cd638d66a1)
+
+
 # 스프링 레거시 팀 프로젝트 클래스잇
 ***
 ## 목차
