@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.classIT.mapper.ReserveMapper">
+	<resultMap id="ReserveResultMap" type="com.classIT.domain.ReserveDTO">
+	    <association property="reserve" javaType="com.classIT.domain.ReserveVO">
+	        <id property="reserve_no" column="reserve_no" />
+	        <result property="owner_id" column="owner_id" />
+	        <result property="user_id" column="user_id" />
+	        <result property="product_no" column="product_no" />
+	        <result property="schedule_no" column="schedule_no" />
+	        <result property="reserve_number" column="reserve_number" />
+	        <result property="reserve_amount" column="reserve_amount" />
+	        <result property="reserve_approval" column="reserve_approval" />
+	        <result property="reserve_date" column="reserve_date" />	        	        	        
+	    </association>
+	    <association property="schedule" javaType="com.classIT.domain.ScheduleVO">
+	        <id property="schedule_no" column="schedule_no" />
+	        <result property="product_no" column="product_no" />
+	        <result property="schedule" column="schedule" />
+	    </association>
+	    <association property="product" javaType="com.classIT.domain.ProductVO">
+	        <id property="product_no" column="product_no" />
+	        <result property="product_title" column="product_title" />
+	        <result property="owner_id" column="owner_id" />
+	        <result property="class_category" column="class_category" />
+	        <result property="main_img" column="main_img" />
+	        <result property="class_detail" column="class_detail" />
+	        <result property="price_per_person" column="price_per_person" />
+	        <result property="max_capacity" column="max_capacity" />
+	        <result property="location" column="location" />
+	        <result property="location_code" column="location_code" />
+	    </association>
+
+	</resultMap>
+	
+	
+
+	<select id="get" resultType="com.classIT.domain.ReserveVO">
+		SELECT * FROM reserve WHERE reserve_no = #{reserve_no}
+	</select>
+	
+
+	<select id="getList" resultType="com.classIT.domain.ReserveVO">
+		SELECT /*+ INDEX_DESC(reserve pk_reserve)*/* FROM reserve WHERE user_id = #{user_id}
+	</select>
+	
+	<insert id="insert">
+		<selectKey keyProperty="reserve_no" order="BEFORE" resultType="long">
+			select seq_reserve.nextval from dual
+		</selectKey>
+		INSERT INTO reserve(reserve_no, owner_id, user_id, product_no, schedule_no, reserve_number, reserve_amount, reserve_approval)
+		VALUES (#{reserve_no}, #{owner_id}, #{user_id}, #{product_no}, #{schedule_no}, #{reserve_number}, #{reserve_amount}, #{reserve_approval})	
+	</insert>
+	
+	<update id="update">
+		UPDATE reserve
+		SET schedule_no = #{schedule_no},
+		reserve_number = #{reserve_number},
+		reserve_amount = #{reserve_amount}
+		WHERE reserve_no = #{reserve_no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM reserve
+		WHERE reserve_no = #{reserve_no} AND user_id=#{user_id}
+	</delete>
+
+
+
+
+
+	<select id="getOwnerList" resultType="com.classIT.domain.ReserveVO">
+		SELECT /*+ INDEX_DESC(reserve pk_reserve)*/* 
+		FROM reserve
+		WHERE owner_id = #{user_id}
+	</select>
+
+	<!-- 
+	<select id="getOwnerListState" resultType="com.classIT.domain.ReserveVO">
+		SELECT /*+ INDEX_DESC(reserve pk_reserve)*/* 
+		FROM reserve
+		WHERE owner_id = #{user_id} AND reserve_approval = #{reserve_approval}
+	</select>
+	 -->
+	 
+	 <select id="getOwnerListState"  resultMap="ReserveResultMap">
+		SELECT /*+ INDEX_DESC(rs pk_reserve)*/
+		    rs.user_id,
+		    rs.reserve_no,
+		    rs.owner_id,
+		    rs.schedule_no,
+		    rs.reserve_number,
+		    rs.reserve_amount,
+		    rs.reserve_approval,
+		    rs.reserve_date,
+		    st.schedule,
+		    pt.product_no,
+		    pt.product_title,
+		    pt.class_category
+		FROM  reserve rs
+		JOIN product_tbl pt
+		    ON rs.product_no = pt.product_no
+		JOIN schedule_tbl st    
+		    ON rs.schedule_no = st.schedule_no
+		WHERE rs.owner_id = #{user_id} 
+			AND rs.reserve_approval = #{reserve_approval}
+	</select>
+	 
+	<update id="updateApproval">
+		UPDATE reserve
+		SET reserve_approval = #{reserve_approval}
+		WHERE reserve_no = #{reserve_no}
+	</update>
+	
+	
+
+</mapper>

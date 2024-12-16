@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.classIT.mapper.MemberMapper">
+
+    <!-- 사용자 확인 -->
+    <select id="userCheck" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM member 
+        WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+    </select>
+
+    <!-- 회원 정보 조회 -->
+    <select id="getMember" parameterType="String" resultType="com.classIT.domain.MemberVO">
+        SELECT * 
+        FROM member 
+        WHERE user_id = #{user_id}
+    </select>
+
+    <!-- ID 중복 확인 -->
+    <select id="confirmID" resultType="int">
+        SELECT COUNT(*) 
+        FROM member 
+        WHERE user_id = #{id}
+    </select>
+
+    <!-- 회원 가입 -->
+    <insert id="insertMember" parameterType="com.classIT.domain.MemberVO">
+        INSERT INTO member (user_name, user_id, user_pw, user_birth, user_number, user_addr, user_role, user_registration_date) 
+        VALUES (#{user_name}, #{user_id}, #{user_pw}, #{user_birth}, #{user_number}, #{user_addr}, #{user_role}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <!-- 회원 정보 수정 -->
+    <update id="updateMember" parameterType="com.classIT.domain.MemberVO">
+        UPDATE member 
+        SET user_name = #{user_name}, user_pw = #{user_pw}, user_birth = #{user_birth}, 
+            user_number = #{user_number}, user_addr = #{user_addr}
+        WHERE user_id = #{user_id}
+    </update>
+    
+    <select id="searchMemberId" parameterType="map" resultType="com.classIT.domain.MemberVO">
+    	SELECT user_id 
+    	FROM member 
+    	WHERE user_name = #{user_name} 
+    	AND user_birth = #{user_birth} 
+    	AND user_number = #{user_number}
+	</select>
+
+	<update id="resetPw" parameterType="com.classIT.domain.MemberVO">
+    UPDATE member
+    SET user_pw = #{user_pw}
+    WHERE user_id = #{user_id} 
+      AND user_name = #{user_name} 
+      AND user_birth = #{user_birth} 
+      AND user_number = #{user_number}
+	</update>
+
+</mapper>

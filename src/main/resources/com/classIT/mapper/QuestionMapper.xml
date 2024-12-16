@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.classIT.mapper.QuestionMapper">
+<resultMap id="UserQnaResultMap" type="com.classIT.domain.UserQnaDTO">
+    <association property="question" javaType="com.classIT.domain.QuestionVO">
+        <id property="question_no" column="question_no" />
+        <result property="product_no" column="product_no" />
+        <result property="question_title" column="question_title" />
+        <result property="question_text" column="question_text" />
+        <result property="question_date" column="question_date" />
+        <result property="user_id" column="question_user_id" />
+        <result property="answercnt" column="answercnt" />
+        <result property="answer_status" column="answer_status" />
+    </association>
+
+    <association property="product" javaType="com.classIT.domain.ProductVO">
+        <id property="product_no" column="product_no" />
+        <result property="product_title" column="product_title" />
+        <result property="owner_id" column="owner_id" />
+    </association>
+	<!-- question_no 가 같은 answerList를 가져온다  -->
+	<collection property="answerList" ofType="com.classIT.domain.AnswerVO" select="getAnswersByQuestionNo" column="question_no" />
+
+</resultMap>
+
+
+	<select id="getAnswersByQuestionNo" resultType="com.classIT.domain.AnswerVO">
+	    SELECT 
+	        answer_no, question_no, user_id, answer_text, answer_date
+	    FROM answer
+	    WHERE question_no = #{question_no}
+	</select>
+
+
+	<select id="getOne" resultType="com.classIT.domain.QuestionVO">
+		SELECT *
+		FROM question
+		WHERE question_no = #{question_no}
+	</select>
+	
+	<select id="getList" resultType="com.classIT.domain.QuestionVO">
+		SELECT/*+ INDEX_DESC(question idx_question_product_question)*/ *
+		FROM question
+		WHERE product_no = #{product_no}
+	</select>
+		
+	<select id="getListForUser" resultMap="UserQnaResultMap">
+	    SELECT 
+	        q.question_no, q.product_no, q.question_title, q.question_text, q.answer_status,
+	        q.question_date, q.user_id AS question_user_id, q.answercnt,
+	        p.product_no, p.product_title, p.owner_id
+	    FROM question q
+	    JOIN product_tbl p ON q.product_no = p.product_no
+	    WHERE q.user_id = #{user_id}
+	</select>
+
+	
+	<insert id="insert">
+		<selectKey keyProperty="question_no" order="BEFORE" resultType="long">
+			select seq_question.nextval from dual
+		</selectKey>
+		INSERT INTO question(question_no, product_no, question_title, question_text, user_id)
+		VALUES(#{question_no}, #{product_no}, #{question_title}, #{question_text} ,#{user_id})	
+	</insert>
+	
+	<update id="update">
+		UPDATE question
+		SET question_title = #{question_title}, question_text =#{question_text}
+		WHERE question_no = #{question_no} AND user_id = #{user_id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM question WHERE question_no = #{question_no} AND user_id = #{user_id}
+	</delete>
+
+
+	<select id="getListWithPaging" resultType="com.classIT.domain.QuestionVO">
+		<![CDATA[ 
+			SELECT question_no,product_no,question_title,question_text,question_date,user_id,answercnt
+			FROM (
+				SELECT /*+ INDEX_DESC(question idx_question_product_question)*/ rownum rn ,question_no,product_no,question_title,question_text,question_date,user_id,answercnt
+				FROM question
+				WHERE product_no = #{product_no}  AND rownum <= #{cri.pageNum} * #{cri.amount}
+			)
+			WHERE rn > (#{cri.pageNum}-1) * #{cri.amount}
+		]]> 
+		
+	</select>
+	
+	<select id="getCountByProductNo" resultType="int">
+		<![CDATA[ 
+			SELECT /*+ INDEX(question idx_question_product_question)*/ count(question_no)
+			FROM question 
+			WHERE product_no = #{product_no}			
+		]]>
+	</select>
+	
+	<update id="updateAnswerCnt">
+		UPDATE question
+		SET answercnt =  answercnt + #{amount}
+		WHERE question_no = #{question_no}
+	</update>
+	
+	<select id="getListForOwner" resultMap="UserQnaResultMap">
+		SELECT 
+		/*+ INDEX_DESC(q pk_question) */
+			q.question_no, q.question_title, q.question_text, q.answer_status,
+        	q.question_date, q.user_id AS question_user_id, q.answercnt,
+			p.product_no, p.product_title, p.owner_id
+		FROM question q
+		JOIN product_tbl p ON q.product_no = p.product_no
+		WHERE q.answer_status = 1
+	</select>
+	
+	<select id="getListForOwnerNon" resultMap="UserQnaResultMap">
+	
+		SELECT 
+		/*+ INDEX_DESC(q pk_question) */
+			q.question_no, q.question_title, q.question_text, q.answer_status,
+        	q.question_date, q.user_id AS question_user_id, q.answercnt,
+			p.product_no, p.product_title, p.owner_id
+		FROM question q
+		JOIN product_tbl p ON q.product_no = p.product_no
+		WHERE q.answer_status = 0
+	</select>
+	
+	
+	<update id="updateAnswerStatus">
+		UPDATE question
+		SET answer_status =  #{status}
+		WHERE question_no = #{question_no}
+	</update>
+	
+
+	<select id="getListForOwnerPaging" resultMap="UserQnaResultMap">
+	    <![CDATA[
+			SELECT 
+				rn, subquery.question_no, subquery.product_no, subquery.question_title, subquery.question_text, 
+				subquery.answer_status, subquery.question_date, subquery.question_user_id, subquery.answercnt,
+				subquery.product_title, subquery.owner_id
+			FROM (
+				SELECT 
+					/*+ INDEX_DESC(q pk_question) */
+					rownum rn,
+					q.question_no, q.question_title, q.question_text, q.answer_status,
+					q.question_date, q.user_id AS question_user_id, q.answercnt,
+					p.product_no, p.product_title, p.owner_id
+				FROM question q
+				JOIN product_tbl p ON q.product_no = p.product_no
+				WHERE p.owner_id = #{user_id} AND q.answer_status = #{status} AND  rownum <= #{cri.pageNum} * #{cri.amount}
+			) subquery
+			WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+	    ]]>
+	</select>
+	
+	<select id="getListForUserPaging" resultMap="UserQnaResultMap">
+	    <![CDATA[
+			SELECT 
+				rn, subquery.question_no, subquery.product_no, subquery.question_title, subquery.question_text, 
+				subquery.answer_status, subquery.question_date, subquery.question_user_id, subquery.answercnt,
+				subquery.product_title, subquery.owner_id
+			FROM (
+				SELECT 
+					/*+ INDEX_DESC(q pk_question) */
+					rownum rn,
+					q.question_no, q.question_title, q.question_text, q.answer_status,
+					q.question_date, q.user_id AS question_user_id, q.answercnt,
+					p.product_no, p.product_title, p.owner_id
+				FROM question q
+				JOIN product_tbl p ON q.product_no = p.product_no
+				WHERE q.user_id = #{user_id} AND q.answer_status = #{status} AND  rownum <= #{cri.pageNum} * #{cri.amount}
+			) subquery
+			WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+	    ]]>
+	</select>
+	
+	<!-- getListForOwne 의 question 데이터 갯수 확인  -->
+	<select id="getCountByQuestionNo" resultType="int">
+	    SELECT count(q.question_no)
+	    FROM question q
+	    JOIN product_tbl p ON q.product_no = p.product_no
+	    WHERE p.owner_id = #{user_id} AND q.answer_status = #{status}
+	</select>
+	
+	<!-- getListForOwne 의 question 데이터 갯수 확인  -->
+	<select id="getCountByUserQuestionNo" resultType="int">
+	    SELECT count(question_no)
+	    FROM question 
+	    WHERE user_id = #{user_id} AND answer_status = #{status}
+	</select>
+	
+	
+	<select id="getOwnerId" resultType="String">
+		SELECT p.owner_id
+		FROM question q
+		JOIN product_tbl p ON q.product_no = p.product_no
+		WHERE q.question_no = #{question_no}
+	</select>
+
+</mapper>

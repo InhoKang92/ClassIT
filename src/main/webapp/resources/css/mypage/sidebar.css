@@ -1,0 +1,70 @@
+@charset "EUC-KR";
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#mypage-header {
+    background-color: #3D7373;
+    margin-top : 100px;
+    padding: 15px;
+    text-align: center;
+}
+#mypage-header>p {
+	color: #fff;
+	font-size: 24px;
+	margin-bottom: 0;
+	margin-left: -500px;
+	margin-top: 0;
+}
+.main-container {
+    display: flex;
+    flex: 1;
+}
+#profile{
+    background-color: #fff;
+    height: 300px;
+    width: 170px;
+    margin: 20px 0px;
+    text-align:center;
+    border: solid gray 1px;
+}
+#profile > img {
+	height: 150px;
+    width: 150px;
+    aling : center;
+	
+}
+
+.profile_text {
+	margin-top: 10px; 
+	
+}
+
+.sidebar {
+    width: 200px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: calc(100vh - 70px); /* 상단 헤더 높이를 제외한 높이 */
+}
+.sidebar a {
+    text-decoration: none;
+    color: #000000;
+    padding: 10px;
+
+    text-align: center;
+}
+.sidebar a:hover {
+    background-color: #3d73733b; /* 마우스 오버 시 딥그린 */
+}
+.content {
+    flex: 1;
+    padding: 100px;
+    min-height: calc(100vh - 70px);
+    
+}

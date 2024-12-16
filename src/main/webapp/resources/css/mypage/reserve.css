@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+.review-box {margin-bottom: 100px ;}
+
+.hover-group:hover {
+   background-color: #f0f8ff; /* 원하는 hover 색상 */
+}
+
+
+.modal-body table{
+	margin : 0 30px;
+}
+
+.tr-button {
+	text-align: center; 
+	vertical-align: middle;
+}
+
+.tr-button button {
+	width: 80px;
+	font-size: 14px;
+	padding: 5px;
+	margin-right: 10px;
+	background: #3D7373;
+	border: 2px solid #3D7373;
+	color: #fff;
+	cursor: pointer;
+
+}
+
+.tr-button button:hover {
+	width: 80px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+	background: none;
+	border: 2px solid #3D7373;
+	color: #3D7373;
+	cursor: pointer;
+
+}
+
+.modal-body input[type="text"]{
+	width: 400px;
+
+}
+
+.modal-body textarea{
+	width: 400px;
+	height: 300px;
+
+}
+
+.img-box {
+	width: 100px;
+	height: 100px;
+	overflow: hidden; /* 범위를 벗어나는 부분 숨기기 */
+	display: flex; /* 이미지가 박스 안에서 잘 정렬되도록 함 */
+	justify-content: center; /* 가로 방향 중앙 정렬 */
+	align-items: center; /* 세로 방향 중앙 정렬 */
+}
+
+.img-box img {
+	max-width: 100%; /* 가로 크기를 박스 너비에 맞춤 */
+	max-height: 100%; /* 세로 크기를 박스 높이에 맞춤 */
+	object-fit: cover; /* 이미지의 비율을 유지하면서 박스를 채우되 넘치는 부분은 잘라내기 */
+}
+
+#img-view {
+	margin-left: 20px;
+	display: flex; /* 자식 요소들을 한 줄로 정렬 */
+	align-items: center; /* 자식 요소들을 세로 방향으로 중앙 정렬 */
+}
+	
+
+
+.hover-group a {
+ 
+           color: #000000;
+
+    }

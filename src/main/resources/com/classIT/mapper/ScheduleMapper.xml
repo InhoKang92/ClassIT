@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.classIT.mapper.ScheduleMapper">
+
+
+	<select id="get" resultType="com.classIT.domain.ScheduleVO">
+		select * from schedule_tbl where product_no = #{product_no} and schedule = #{schedule}
+	</select>
+
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="schedule_no" order="BEFORE" resultType="long">
+			select schedule_sequence.nextval from dual
+		</selectKey>
+		insert into schedule_tbl (schedule_no, product_no, schedule)
+		values (#{schedule_no}, #{product_no}, #{schedule})
+	</insert>
+	
+	<select id="getList" resultType="com.classIT.domain.ScheduleVO">
+        select * from schedule_tbl where product_no = #{product_no}
+    </select>
+    
+    <delete id="delete">
+		delete from schedule_tbl where product_no = #{product_no}
+	</delete>
+
+</mapper>

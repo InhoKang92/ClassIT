@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.classIT.mapper.ProductMapper">
+
+
+	<resultMap type="com.classIT.domain.ProductVO" id="productMap">
+    	<id property="product_no" column="product_no"/>
+    	<result property="product_no" column="product_no"/>
+    	<result property="product_title" column="product_title"/>
+    	<result property="owner_id" column="owner_id"/>
+    	<result property="class_detail_1" column="class_detail_1"/>
+    	<result property="class_detail_2" column="class_detail_2"/>
+    	<result property="class_detail_3" column="class_detail_3"/>
+    	<result property="class_detail_4" column="class_detail_4"/>
+    	<result property="class_detail_5" column="class_detail_5"/>
+    	<result property="main_img" column="main_img"/>
+    	<result property="class_category" column="class_category"/>
+    	<result property="price_per_person" column="price_per_person"/>
+    	<result property="max_capacity" column="max_capacity"/>
+    	<result property="location" column="location"/>
+    	<result property="location_code" column="location_code"/>
+    	<collection property="scheduleList" resultMap="scheduleMap">
+    	</collection> 
+  	</resultMap>
+  	
+  	<resultMap type="com.classIT.domain.ScheduleVO" id="scheduleMap">
+  		<result property="schedule_no" column="schedule_no" />
+    	<result property="product_no" column="product_no"/>
+    	<result property="schedule" column="schedule"/>
+  	</resultMap>
+  	
+  	<select id="read" resultMap="productMap">
+		select 
+        	p.product_no, p.product_title, p.owner_id, p.class_category, p.main_img, p.class_detail_1, p.class_detail_2, p.class_detail_3, p.class_detail_4, p.class_detail_5, p.price_per_person, p.max_capacity, p.location, p.location_code, s.schedule_no, s.schedule
+        from 
+        	product_tbl p left join schedule_tbl s on p.product_no = s.product_no
+        where p.product_no = #{product_no}
+	</select>
+	
+	<select id="read2" resultMap="productMap">
+		select 
+        	p.product_no, p.product_title, p.owner_id, p.class_category, p.main_img, p.class_detail_1, p.class_detail_2, p.class_detail_3, p.class_detail_4, p.class_detail_5, p.price_per_person, p.max_capacity, p.location, p.location_code, s.schedule_no, s.schedule
+        from 
+        	product_tbl p left join schedule_tbl s on p.product_no = s.product_no
+        where p.product_title = #{product_title}
+	</select>
+    
+    <select id="getList1" resultType="com.classIT.domain.ProductVO">
+        select product_no, product_title, class_category, main_img, price_per_person, max_capacity, location
+        from product_tbl order by product_no asc
+    </select> 
+    
+    <select id="getList2" resultType="com.classIT.domain.ProductVO">
+        select product_no, product_title, class_category, main_img, price_per_person, max_capacity, location
+        from product_tbl
+        where class_category = #{class_category} AND product_title LIKE '%'||#{keyword}||'%'
+    </select> 
+    
+    <select id="getList3" resultType="com.classIT.domain.ProductVO">
+        select product_no, product_title, class_category, main_img, price_per_person, max_capacity, location
+        from product_tbl
+        where class_category = #{class_category}
+    </select> 
+    
+    <select id="getList4" resultType="com.classIT.domain.ProductVO">
+        select product_no, product_title, class_category, main_img, price_per_person, max_capacity, location
+        from product_tbl
+        where product_title LIKE '%'||#{keyword}||'%'
+    </select> 
+    
+    <insert id="insert">
+		insert into product_tbl (product_no, product_title, owner_id, class_category, main_img, class_detail_1, class_detail_2, class_detail_3, class_detail_4, class_detail_5, price_per_person, max_capacity, location, location_code)
+		values (product_sequence.nextval, #{product_title}, #{owner_id}, #{class_category}, #{main_img}, #{class_detail_1}, #{class_detail_2}, #{class_detail_3}, #{class_detail_4}, #{class_detail_5}, #{price_per_person}, #{max_capacity}, #{location}, #{location_code})
+	</insert>
+
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="product_no" order="BEFORE" resultType="long">
+			select product_sequence.nextval from dual
+		</selectKey>
+		insert into product_tbl (product_no, product_title, owner_id, class_category, main_img, class_detail_1, class_detail_2, class_detail_3, class_detail_4, class_detail_5, price_per_person, max_capacity, location, location_code)
+		values (#{product_no}, #{product_title}, #{owner_id}, #{class_category}, #{main_img}, #{class_detail_1}, #{class_detail_2}, #{class_detail_3}, #{class_detail_4}, #{class_detail_5}, #{price_per_person}, #{max_capacity}, #{location}, #{location_code})
+	</insert>
+	
+	<delete id="delete">
+		delete from product_tbl where product_no = #{product_no}
+	</delete>
+
+	<update id="update">
+		update product_tbl
+		set product_title = #{product_title},
+		owner_id = #{owner_id},
+		class_category = #{class_category},
+		main_img = #{main_img},
+		class_detail_1 = #{class_detail_1},
+		class_detail_2 = #{class_detail_2},
+		class_detail_3 = #{class_detail_3},
+		class_detail_4 = #{class_detail_4},
+		class_detail_5 = #{class_detail_5},
+		price_per_person = #{price_per_person},
+		max_capacity = #{max_capacity},
+		location = #{location},
+		location_code = #{location_code}
+		where product_no = #{product_no}
+	</update>
+    
+</mapper>

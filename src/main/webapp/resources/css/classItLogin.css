@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.container {
+	text-align: center;
+}
+
+.login_title>a {
+	font-family: 'Paperlogy-8ExtraBold';
+	color: #3D7373;
+}
+
+.login_form {
+	display: inline-block;
+	width: 500px;
+	border: 1px solid #3D7373;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.id_input {
+	width: 100%;
+	font-size: 20px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.pw_input {
+	width: 100%;
+	font-size: 20px;
+	padding: 10px;
+	border: 1px solid black;
+	margin: 10px 0;
+}
+
+.btn_box {
+	position: relative;
+	width: 100%;
+	display: flex;
+	margin-top: 20px;
+}
+
+.login_login_btn {
+	width: 50%;
+	background: #3D7373;
+	border: 2px solid #3D7373;
+	cursor: pointer;
+	font-size: 18px;
+	color: #fff;
+}
+
+.login_join_btn {
+	width: 50%;
+	height: 52px;
+	background: #fff;
+	border: 2px solid #3D7373;
+	cursor: pointer;
+	font-size: 18px;
+	color: #3D7373;
+}
+
+.error_msg, .alert_msg {
+	color: red;
+}
+
+.logout_msg {
+	color: #3D7373;
+}
+
+.find_btns {
+	margin-top: 10px;
+	margin-left: -10px;
+}
+
+.find_btns>button {
+	position: relative;
+	background: none;
+	border: none;
+	color: #3D7373;
+	font-size: 14px;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.find_btns>button:first-child::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	right: -13px;
+	display: block;
+	width: 2px;
+	height: 15px;
+	background: rgb(61,115,115,0.5);
+}
