@@ -264,6 +264,9 @@
 + 클래스 서브페이지에서는 클래스에 관한 정보와 클래스 위치, 리뷰, 문의 내역을 확인할 수 있습니다.
 + 원하는 일정과 수강인원을 선택하여 클래스를 예약할 수 있습니다.
 + 로그인이 되어있지 않은 상태로 클래스 예약 버튼을 클릭하면 로그인을 유도하는 경고창이 출력됩니다.
+
+![클래스서브](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%84%9C%EB%B8%8C.gif)
+
 + 예약확인(결제) 페이지에서는 내가 선택한 정보를 확인하고 결제를 진행할 수 있습니다.
 
 ![예약확인결제](https://github.com/user-attachments/assets/8db91953-78fd-4d03-aaac-0dbbb41abbee)
