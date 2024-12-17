@@ -254,7 +254,7 @@
   + Q&A 관리 페이지에서는 내 클래스에 들어온 문의 내역을 '미답변', '답변 완료' 목록으로 구분하여 확인할 수 있습니다.
   + '미답변' 목록의 문의 내역에는 '답변달기' 버튼을 이용해 답변을 등록할 수 있으며, 답변 등록과 동시에 '답변 완료' 목록으로 자동 이동됩니다.
 
-  ![관리페이지문의답변](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80%EB%AC%B8%EC%9D%98%EB%8B%B5%EB%B3%80.gif)
+  ![관리페이지문의답변](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/src/main/webapp/resources/gifs/%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80%EB%AC%B8%EC%9D%98%EB%8B%B5%EB%B3%80.gif)
   
 #### 클래스 검색 페이지
 + 클래스 카테고리, 키워드를 이용해 클래스를 검색할 수 있습니다.
