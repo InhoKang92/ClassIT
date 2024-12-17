@@ -31,5 +31,18 @@
 + ETC : Git
 ***
 ## 4. 프로젝트 설계, 구현
-<img src="https://github.com/user-attachments/assets/5350644f-7d6c-4b35-9f71-ea5097161005" width="47%" height="47%" align="left" />
-<img src="https://github.com/user-attachments/assets/5350644f-7d6c-4b35-9f71-ea5097161005" width="47%" height="47%" align="right" />
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/user-attachments/assets/5350644f-7d6c-4b35-9f71-ea5097161005" />
+      </td>
+      <td>
+        <img src="https://github.com/user-attachments/assets/5350644f-7d6c-4b35-9f71-ea5097161005" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
