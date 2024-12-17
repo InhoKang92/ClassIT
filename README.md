@@ -74,12 +74,12 @@
     </tr>
     <tr>
       <td colspan="2">
-        <img src="https://github.com/user-attachments/assets/b0bbb6c3-ddbe-4686-9b90-27ae458c03c9" />
+        <img src="https://github.com/user-attachments/assets/14a90662-b855-4e3f-97be-f620ec87bae5" />
       </td>
     </tr>
     <tr>
       <td colspan="2">
-        <img src="https://github.com/user-attachments/assets/ecde3b14-7a00-480b-b183-89789b9063a5" />
+        <img src="https://github.com/user-attachments/assets/1fdbbcd4-892d-4af8-8f1a-b831b8c3babc" />
       </td>
     </tr>
     <tr>
