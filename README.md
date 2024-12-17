@@ -265,7 +265,7 @@
 + 원하는 일정과 수강인원을 선택하여 클래스를 예약할 수 있습니다.
 + 로그인이 되어있지 않은 상태로 클래스 예약 버튼을 클릭하면 로그인을 유도하는 경고창이 출력됩니다.
 
-![클래스서브](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%84%9C%EB%B8%8C.gif)
+![클래스서브](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/src/main/webapp/resources/gifs/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%84%9C%EB%B8%8C.gif)
 
 + 예약확인(결제) 페이지에서는 내가 선택한 정보를 확인하고 결제를 진행할 수 있습니다.
 
@@ -280,7 +280,7 @@
 + 관리자로 로그인 후 클래스 검색페이지로 이동하면 '클래스 등록하기' 버튼이 활성화 되어 있습니다.
 + 필요한 정보들을 입력하여 새로운 클래스를 등록할 수 있습니다.
 
-![클래스등록](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/%ED%81%B4%EB%9E%98%EC%8A%A4%EB%93%B1%EB%A1%9D.gif)
+![클래스등록](https://media.githubusercontent.com/media/InhoKang92/ClassIT/refs/heads/main/src/main/webapp/resources/gifs/%ED%81%B4%EB%9E%98%EC%8A%A4%EB%93%B1%EB%A1%9D.gif   )
 
 + 클래스 상세페이지로 이동하면 클래스 '수정'/'삭제' 버튼이 활성화 되어 있습니다.
 + '수정' 버튼을 클릭하고 클래스 수정 페이지에서 필요한 정보를 수정할 수 있습니다.
