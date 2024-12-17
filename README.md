@@ -87,7 +87,7 @@
         <img src="https://github.com/user-attachments/assets/b8d5a806-18a7-4a19-8785-db7897fd54ed" />
       </td>
       <td>
-        <img src="https://github.com/user-attachments/assets/8c4b0eeb-4eb6-4665-8b33-fed8624fc104" />
+        <img src="" />
       </td>
     </tr>
     <tr>
@@ -100,7 +100,7 @@
     </tr>
     <tr>
       <td>
-        <img src="https://github.com/user-attachments/assets/9aa0d79e-8d59-48a7-8f72-b0c780f7902e" />
+        <img src="" />
       </td>
        <td>
         <img src="https://github.com/user-attachments/assets/b09480be-bafc-41eb-a421-dab4714a3f6b" />
