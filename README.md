@@ -225,9 +225,12 @@
 + 로그인
   + 아이디 또는 비밀번호를 입력하지 않고 로그인 버튼을 클릭하면 미입력된 정보를 입력하라는 메세지가 출력됩니다.
 
-![로그인](https://github.com/user-attachments/assets/84282530-06a4-4379-8dd4-acdb723b5d93)
+  ![로그인](https://github.com/user-attachments/assets/84282530-06a4-4379-8dd4-acdb723b5d93)
 
   + 입력 받은 회원정보와 일치하는 아이디 찾기/ 비밀번호 초기화 기능을 제공합니다.
+
+  ![아이디비밀번호찾기](https://github.com/user-attachments/assets/de45ed1c-93f0-4a2f-aebf-d7195f724967)
+  
 + 마이페이지
   + 회원정보 페이지에서는 정보를 수정할 수 있습니다.
 
