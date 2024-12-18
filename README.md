@@ -2,7 +2,7 @@
 
 
 # 스프링 레거시 팀 프로젝트 클래스잇(CLASS IT)
-***
+
 ## 목차
 + [개요](#chapter1)
 + [팀원 소개](#chapter2)
@@ -11,16 +11,31 @@
 + [핵심 기능](#chapter5)
 + [주요기능 실행 화면](#chapter6)
 + [개선사항](#chapter7)
-***
+
+  
+<br/>
+<br/>
+
+
 ## 1. 개요 <a id="chapter1"></a>
 + 프로젝트 목표: 스프링 레거시 기반 다양한 API를 이용한 원데이 클래스 중개 웹사이트 개발 프로젝트
 + 개발 기간 : 24/11/25 - 24/12/13
-***
+
+  
+<br/>
+<br/>
+
+
 ## 2. 팀원 소개 <a id="chapter2"></a>
 + KANG INHO
 + WON YURIM
 + KIM YECHAN
-***
+
+  
+<br/>
+<br/>
+
+
 ## 3. 기술 스택 <a id="chapter3"></a>
 + API : Kakao Map API, PortOne API
 + Language : Java(11), JavaScript(1.5)
@@ -29,7 +44,12 @@
 + Target: Web browser
 + Tool : Spring Tool Suite 3.9.18.RELEASE
 + ETC : Git
-***
+
+  
+<br/>
+<br/>
+
+
 ## 4. 프로젝트 설계, 구현 <a id="chapter4"></a>
 <table>
   <tbody>
@@ -193,7 +213,11 @@
   </tbody>
 </table>
 
-***
+  
+<br/>
+<br/>
+
+
 ## 5. 핵심 기능 <a id="chapter5"></a>
 #### 일반회원
 + 로그인
@@ -211,7 +235,12 @@
 + 카테고리, 키워드로 클래스 검색
 + 원하는 스케줄, 수강 인원 선택
 + 결제 후 사장에 의한 승인/거절
-***
+
+  
+<br/>
+<br/>
+
+
 ## 6. 주요 기능 실행 화면 <a id="chapter6"></a>
 #### 메인 페이지
 + 회원가입
@@ -288,7 +317,11 @@
 
 ![클래스수정삭제](https://github.com/user-attachments/assets/f80404c2-1531-40fc-8e57-7c8e34c18af7)
 
-***
+  
+<br/>
+<br/>
+
+
 ## 7. 개선사항 <a id="chapter7"></a>
 + 카카오, 네이버 등 소셜 로그인 기능
 + 클래스 예약 완료 및 승인/거절 시 확인 메일 발송 기능
