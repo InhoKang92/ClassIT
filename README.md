@@ -210,6 +210,9 @@
       <td>
         <img src="https://github.com/user-attachments/assets/016a61a4-cd07-4805-8d6a-91d506cc618f" />
       </td>
+      <td>
+        <img src="https://github.com/user-attachments/assets/4b3461e8-976e-4e44-a084-70c8af2e88b1" />
+      </td>
   </tbody>
 </table>
 
